@@ -1,0 +1,6 @@
+com\example\optimization\model\YardSlot.class
+com\example\optimization\service\SlotPickerService.class
+com\example\optimization\model\Container.class
+com\example\optimization\OptimizationController.class
+com\example\optimization\OptimizationApiApplication.class
+com\example\optimization\model\PickSpotRequest.class
