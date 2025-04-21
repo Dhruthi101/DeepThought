@@ -23,7 +23,7 @@ public class Container {
 
     private boolean needsCold;
 
-    // fromMap method stays the same
+
     public static Container fromMap(Map<String, Object> map) {
         Container container = new Container();
         container.id = (String) map.get("id");

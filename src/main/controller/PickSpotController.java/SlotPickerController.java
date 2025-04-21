@@ -30,23 +30,22 @@ public class SlotPickerController {
         Map<String, Object> response = new HashMap<>();
 
         try {
-            // Convert the incoming container data to a Container object
+          
             Container container = Container.fromMap((Map<String, Object>) request.get("container"));
             
-            // Convert the incoming yard map data to a List of YardSlot objects
+          
             List<YardSlot> yardMap = YardSlot.listFrom((List<Map<String, Object>>) request.get("yardMap"));
 
-            // Validate if the yard map is empty
+       
             if (yardMap.isEmpty()) {
                 response.put("error", "Yard map is empty");
                 logger.warn("Yard map is empty for container: {}", container.getId());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
 
-            // Get the best slot for the container
+        
             YardSlot bestSlot = service.pickBestSlot(container, yardMap);
 
-            // Check if a valid slot was found
             if (bestSlot != null) {
                 response.put("containerId", container.getId());
                 response.put("targetX", bestSlot.getX());

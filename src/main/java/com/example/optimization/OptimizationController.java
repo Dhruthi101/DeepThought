@@ -19,34 +19,34 @@ public class OptimizationController {
 
     private final SlotPickerService slotPickerService;
 
-    // Constructor injection of SlotPickerService
+
     public OptimizationController(SlotPickerService slotPickerService) {
         this.slotPickerService = slotPickerService;
     }
 
-    // Endpoint to check API status
+    
     @GetMapping("/status")
     public ResponseEntity<String> getStatus() {
         logger.info("Received request for API status");
         return ResponseEntity.ok("Optimization API is running!");
     }
 
-    // Endpoint to pick the optimal yard spot for a container
+ 
     @PostMapping("/pickSpot")
     public ResponseEntity<String> pickSpot(@RequestBody PickSpotRequest request) {
         logger.info("Received request for picking optimal yard spot");
 
-        // Convert container and yard map data to objects
+      
         Container container = Container.fromMap(request.getContainer());
         List<YardSlot> yardSlots = YardSlot.listFrom(request.getYardMap());
 
-        // Validate the container and yard map
+ 
         if (container == null || yardSlots.isEmpty()) {
             logger.error("Invalid container or yard map data.");
             return ResponseEntity.badRequest().body("Invalid container or yard map data.");
         }
 
-        // Use SlotPickerService to find the best slot
+   
         YardSlot bestSlot = slotPickerService.pickBestSlot(container, yardSlots);
 
         if (bestSlot != null) {

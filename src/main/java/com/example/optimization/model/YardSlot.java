@@ -15,12 +15,12 @@ public class YardSlot {
     private boolean hasColdUnit;
     private boolean occupied;
 
-    // Adds the `hasColdUnit()` method if you want it directly
+  
     public boolean hasColdUnit() {
         return this.hasColdUnit;
     }
 
-    // Converts a List<Map<String, Object>> to a List of YardSlot objects
+
     public static List<YardSlot> listFrom(List<Map<String, Object>> list) {
         return list.stream()
             .map(map -> {
